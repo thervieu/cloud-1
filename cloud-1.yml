@@ -4,14 +4,19 @@
 
 - name: Create docker Network
   hosts: "{{ host }}"
-  community.docker.docker_network:
-    name: "cloud-1_network" //
-    # driver: overlay # default is bridge and should work but not 'good' for production (enables all containers to be see-through)
+  tasks:
+    - name: Create and name the Docker Network  # automatically created
+                                                # we just do it for clarity purposes
+      community.docker.docker_network:
+        name: "cloud-1_network" //
+        # driver: overlay # default is bridge and works for the subject's purposes
 
 - name: Create docker volume
   hosts: "{{ host }}"
-  community.docker.docker_volume:
-    volume_name: db_volume
+  tasks:
+    - name: Create and name the Docker Volume
+    community.docker.docker_volume:
+      volume_name: db_volume
 
 - name: Build and run nginx
   hosts: "{{ host }}"

@@ -18,8 +18,8 @@
 
 
 2 - Identifier les differents elements a installer (cf. sujet d'Inception) + l'ordre
-    * Un container nginx
     * Un container MariaDB
+    * Un container nginx
     * Un container wordpress
     * Un container phpmyadmin
 
@@ -43,5 +43,7 @@ Idees de comment faire ?
     build: .
     ports:
       - "8005:8080"
+https://blog.sylo.space/guide-to-install-nginx-php-mariadb-phpmyadmin-in-docker/
+
 
 5 - Automatiser le deploiement de Docker avec Ansible

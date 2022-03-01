@@ -5,7 +5,8 @@
 - name: Create docker Network
   hosts: "{{ host }}"
   community.docker.docker_network:
-    name: "cloud-1_network"
+    name: "cloud-1_network" //
+    # driver: overlay # default is bridge and should work but not 'good' for production (enables all containers to be see-through)
 
 - name: Create docker volume
   hosts: "{{ host }}"

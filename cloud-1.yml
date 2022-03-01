@@ -5,7 +5,7 @@
 - name: Create docker Network
   hosts: "{{ host }}"
   community.docker.docker_network:
-    name: cloud-1_network
+    name: "cloud-1_network"
 
 - name: Create docker volume
   hosts: "{{ host }}"

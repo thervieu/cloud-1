@@ -1,9 +1,25 @@
+- name: Creates {service}_build directory
+  ansible.builtin.file:
+    path: ~/pma_build
+    state: directory
+    mode: '755'
+
+- name: Copy Dockerfile
+  ansible.builtin.template:
+    src: Dockerfile
+    dest: pma_build/Dockerfile
+
+- name: Copy .conf
+  ansible.builtin.template:
+    src: pma.conf
+    dest: pma_build/pma.conf
+
 - name: build image
   community.docker.docker_image:
     name: pma_img
     state: present
     build:
-      path: "../templates/Dockerfile"
+      path: pma_build
 
 - name: run container
   community.docker.docker_container:

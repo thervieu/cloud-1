@@ -1,9 +1,25 @@
+- name: Creates {service}_build directory
+  ansible.builtin.file:
+    path: ~/mariadb_build
+    state: directory
+    mode: '755'
+
+- name: Copy Dockerfile
+  ansible.builtin.template:
+    src: Dockerfile
+    dest: mariadb_build/Dockerfile
+
+- name: Copy .conf
+  ansible.builtin.template:
+    src: mariadb.conf
+    dest: mariadb_build/mariadb.conf
+
 - name: build image
   community.docker.docker_image:
     name: mariadb_img
     state: present
     build:
-      path: "../templates/Dockerfile"
+      path: mariadb_build
 
 - name: run container
   community.docker.docker_container:
@@ -12,5 +28,5 @@
     state: present
     networks:
       name: "cloud-1_network"
-    restart_policy: on-failure
+    restart_policy: "on-failure"
     restart_retries: 3

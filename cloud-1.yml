@@ -1,0 +1,33 @@
+- name: Install needed services
+  roles:
+    install
+
+- name: Create docker Network
+  hosts: "{{ host }}"
+  community.docker.docker_network:
+    name: cloud-1_network
+
+- name: Create docker volume
+  hosts: "{{ host }}"
+  community.docker.docker_volume:
+    volume_name: db_volume
+
+- name: Build and run nginx
+  hosts: "{{ host }}"
+  roles:
+    nginx
+
+- name: Build and run phpmyadmin
+  hosts: "{{ host }}"
+  roles:
+    phpmyadmin
+
+- name: Build and run mariadb
+  hosts: "{{ host }}"
+  roles:
+    mariadb
+
+- name: Build and run wordpress
+  hosts: "{{ host }}"
+  roles:
+    wordpress

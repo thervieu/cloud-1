@@ -15,8 +15,8 @@
   hosts: "{{ host }}"
   tasks:
     - name: Create and name the Docker Volume
-    community.docker.docker_volume:
-      volume_name: db_volume
+      community.docker.docker_volume:
+        volume_name: db_volume
 
 - name: Build and run nginx
   hosts: "{{ host }}"

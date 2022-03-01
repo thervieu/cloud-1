@@ -8,6 +8,9 @@
     https://cdn.intra.42.fr/pdf/pdf/35452/en.subject.pdf
     https://cdn.intra.42.fr/pdf/pdf/35453/fr.subject.pdf
 
+### Run docker without sudo post-installation
+    https://docs.docker.com/engine/install/linux-postinstall/
+
 
 ## Etapes
 
@@ -32,6 +35,13 @@ Idees de comment faire ?
 
 
 4 - Regarder comment implementer cette stack avec Docker
-
+    * nginx protips: fichier de conf nginx dans /etc/nginx/conf.d
+                     pages html la ou on les configure mais sinon: /usr/share/nginx/html
+    
+    services:
+  mywebapp:
+    build: .
+    ports:
+      - "8005:8080"
 
 5 - Automatiser le deploiement de Docker avec Ansible

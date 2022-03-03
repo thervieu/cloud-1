@@ -1,27 +1,16 @@
-- name: Creates {service}_build directory
-  ansible.builtin.file:
-    path: ~/nginx_build
-    state: directory
-    mode: '755'
+- name: Copy files
+  ansible.builtin.copy:
+    src: '{{role_path}}/../templates'
+    dest: nginx_files # directory automatically created
 
-- name: Copy Dockerfile
-  ansible.builtin.template:
-    src: Dockerfile
-    dest: nginx_build/Dockerfile
-
-- name: Copy .conf
-  ansible.builtin.template:
-    src: nginx.conf
-    dest: nginx_build/nginx.conf
-
-- name: build image
+- name: Build image
   community.docker.docker_image:
     name: nginx_img
     state: present
     build:
-      path: nginx_build
+      path: nginx_files
 
-- name: run container
+- name: Run container
   community.docker.docker_container:
     name: nginx_container
     image: nginx_img

@@ -1,30 +1,30 @@
 - name: Creates {service}_build directory
   ansible.builtin.file:
-    path: ~/wordpress_build
+    path: ~/pma_build
     state: directory
     mode: '755'
 
 - name: Copy Dockerfile
   ansible.builtin.template:
     src: Dockerfile
-    dest: wordpress_build/Dockerfile
+    dest: pma_build/Dockerfile
 
 - name: Copy .conf
   ansible.builtin.template:
-    src: wordpress.conf
-    dest: wordpress_build/wordpress.conf
+    src: pma.conf
+    dest: pma_build/pma.conf
 
 - name: build image
   community.docker.docker_image:
-    name: wordpress_img
+    name: pma_img
     state: present
     build:
-      path: wordpress_build
+      path: pma_build
 
 - name: run container
   community.docker.docker_container:
-    name: wordpress_container
-    image: wordpress_img
+    name: pma_container
+    image: pma_img
     state: present
     networks:
       name: "cloud-1_network"

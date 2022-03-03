@@ -1,0 +1,39 @@
+- name: Install needed services
+  roles:
+    install
+
+- name: Create docker Network
+  hosts: "{{ host }}"
+  tasks:
+    - name: Create and name the Docker Network  # automatically created
+                                                # we just do it for clarity purposes
+      community.docker.docker_network:
+        name: "cloud-1_network" //
+        # driver: overlay # default is bridge and works for the subject's purposes
+
+- name: Create docker volume
+  hosts: "{{ host }}"
+  tasks:
+    - name: Create and name the Docker Volume
+      community.docker.docker_volume:
+        volume_name: db_volume
+
+- name: Build and run nginx
+  hosts: "{{ host }}"
+  roles:
+    nginx
+
+- name: Build and run phpmyadmin
+  hosts: "{{ host }}"
+  roles:
+    phpmyadmin
+
+- name: Build and run mariadb
+  hosts: "{{ host }}"
+  roles:
+    mariadb
+
+- name: Build and run wordpress
+  hosts: "{{ host }}"
+  roles:
+    wordpress

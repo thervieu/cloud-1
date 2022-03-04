@@ -47,3 +47,24 @@ https://blog.sylo.space/guide-to-install-nginx-php-mariadb-phpmyadmin-in-docker/
 
 
 5 - Automatiser le deploiement de Docker avec Ansible
+
+--- 
+
+# Commandes Docker pour lancer les containers:
+
+docker exec -it xxx bash 
+
+IMPORT:
+docker exec -i docker_mariadb_1 mysql -uroot -pqwerty DB_NAME < your_local_db_dump.sql
+EXPORT:
+docker exec -i docker_mariadb_1 mysqldump -uroot -pqwerty DB_NAME > your_local_db_dump.sql
+
+## nginx
+
+docker build -t nginx .
+docker run -dt -p 80:80 nginx
+
+## mariadb
+
+docker build -t mariadb .
+docker run -dt -p 3306:3306

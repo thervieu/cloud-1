@@ -7,3 +7,9 @@
 #      - PMA_HOST=mariadb
 #    depends_on:
 #      - mariadb
+
+##################
+
+FROM phpmyadmin:fpm-alpine
+
+RUN apk add iputils

@@ -1,3 +1,7 @@
+# https://stackoverflow.com/questions/60577587/how-to-use-the-same-mysql-and-same-phpmyadmin-for-multiple-containers-like-jooml
+
+#########
+
 #  mariadb:
 #    image: mariadb:10.4
 #    restart: always
@@ -8,6 +12,8 @@
 #    command: "mysqld --init-file /data/application/init.sql"
 #    volumes:
 #        - ./init.sql:/data/application/init.sql
+
+##########
 
 
 #FROM mariadb:latest as builder
@@ -26,18 +32,39 @@
 #       it has been declared, those changes will be discarded.
 #RUN ["/usr/local/bin/docker-entrypoint.sh", "mysqld", "--datadir", "/initialized-db", "--aria-log-dir-path", "/initialized-db"]
 
+#########
 
+#FROM mariadb:latest
 
-FROM mariadb:latest
+#COPY --from=builder /initialized-db /var/lib/mysql
 
-COPY --from=builder /initialized-db /var/lib/mysql
+#########
 
+  # Database
+#  db:
+#    image: mysql:5.7
+#    volumes:
+#      - db_data:/var/lib/mysql
+#    restart: always
+#    environment:
+#      MYSQL_ROOT_PASSWORD: password
+#      MYSQL_DATABASE: wordpress
+#      MYSQL_USER: wordpress
+#      MYSQL_PASSWORD: wordpress
+#    networks:
+#      - wpsite
 
-FROM mariadb:latest
+#########
 
-ENV MYSQL_ROOT_PASSWORD="root"
+FROM mysql:latest
+
+RUN apt-get update && apt-get upgrade -y && apt-get dist-upgrade -y && apt-get install -y iputils-ping
+
+ENV MYSQL_ROOT_PASSWORD="rootpass"
 #ENV MYSQL_DATABASE="imhere"
+
+
 
 #ADD imhere.sql /tmp/imhere.sql
 
-#RUN "mysql -u root --password="root" imhere < /tmp/imhere.sql"
+#RUN "mysql -u root --password="root" imhere < /tmp/imhere.sql" 

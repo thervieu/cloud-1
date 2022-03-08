@@ -1,0 +1,6 @@
+FROM wordpress:latest
+
+ENV WORDPRESS_DB_HOST="db_c"
+ENV WORDPRESS_DB_USER="tester"
+ENV WORDPRESS_DB_PASSWORD="testerpass"
+ENV WORDPRESS_DB_NAME="testerdb"

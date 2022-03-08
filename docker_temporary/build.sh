@@ -34,7 +34,7 @@ echo ""
 docker build -t $DATABASE $FOLDER/Dockerfiles/mariadb
 docker build -t $NGINX $FOLDER/Dockerfiles/nginx
 docker build -t $DB_ADMIN $FOLDER/Dockerfiles/phpmyadmin
-#docker build -t WORDPRESS $FOLDER/Dockerfiles/mariadb/Dockerfile
+docker build -t $WORDPRESS $FOLDER/Dockerfiles/wordpress
 
 echo "BUILD FINISHED"
 
@@ -51,7 +51,8 @@ echo -e "\\n\\n#################################################################
      "##################################################################\\n"
 
 docker run -dt -p 3306:3306 --network=$NETWORK $DATABASE
-docker run -dt -p 80:80 --network=$NETWORK $NGINX
+docker run -dt -p 8000:80 --network=$NETWORK $NGINX
 docker run -dt -p 9000:9000 -p 8080:80 --network=$NETWORK $DB_ADMIN
+docker run -dt -p 7000:80 --network=$NETWORK $WORDPRESS
 
 echo -e "\nFINISHED?" 

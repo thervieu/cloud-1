@@ -15,3 +15,8 @@ FROM phpmyadmin:latest
 
 #RUN apk add iputils
 RUN apt-get update && apt-get upgrade -y && apt-get dist-upgrade -y && apt-get install -y iputils-ping
+
+
+ENV MYSQL_ROOT_PASSWORD="rootpass"
+ENV PMA_HOST="db_c"
+ENV PMA_PASSWORD="rootpass"

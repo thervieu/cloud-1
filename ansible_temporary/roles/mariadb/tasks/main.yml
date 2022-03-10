@@ -25,7 +25,7 @@
   community.docker.docker_container:
     name: mariadb_container
     image: mariadb_img
-    state: present
+    state: started
     networks:
       - name: "{{network_name}}"
     restart_policy: "on-failure"

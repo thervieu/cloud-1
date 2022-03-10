@@ -26,4 +26,4 @@
 
 - name: Create the Docker network
   community.docker.docker_network:
-    name: {{ network_name }}
+    name: "{{ network_name }}"

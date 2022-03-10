@@ -27,6 +27,6 @@
     image: mariadb_img
     state: present
     networks:
-      name: "cloud-1_network"
+      name: "{{network_name}}"
     restart_policy: "on-failure"
     restart_retries: 3

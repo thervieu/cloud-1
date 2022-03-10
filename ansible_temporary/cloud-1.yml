@@ -1,15 +1,35 @@
----
-
+--- 
 - name: Installing the prerequisites on the server
+  vars_files:
+    - group_vars/all
   gather_facts: no
-  hosts: server
+  hosts: "{{host}}"
   remote_user: ubuntu
   become: yes
   become_method: sudo
   roles:
-    - install
+    - role: install
+
+- name: Create docker volume
+  vars_files:
+    - group_vars/all
+  hosts: "{{host}}"
+  remote_user: ubuntu
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: Create and name the Docker Volume
+      community.docker.docker_volume:
+        volume_name: db_volume
 
 - name: Deploy the MariaDB container on the server
+  vars_files:
+    - group_vars/all
   gather_facts: no
+  hosts: "{{host}}"
+  remote_user: ubuntu
+  become: yes
+  become_method: sudo
   roles:
-    - mariadb
+    - role: mariadb
+

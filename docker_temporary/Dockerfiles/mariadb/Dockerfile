@@ -58,12 +58,21 @@
 
 FROM mysql:latest
 
+<<<<<<< HEAD
 #RUN apt-get update && apt-get upgrade -y && apt-get dist-upgrade -y && apt-get install -y iputils-ping
 
 ENV MYSQL_ROOT_PASSWORD="rootpass"
 ENV MYSQL_DATABASE="testerdb"
 ENV MYSQL_USER="tester"
 ENV MYSQL_PASSWORD="testerpass"
+=======
+RUN apt-get update && apt-get upgrade -y && apt-get dist-upgrade -y && apt-get install -y iputils-ping
+
+ENV MYSQL_ROOT_PASSWORD="rootpass"
+#ENV MYSQL_DATABASE="imhere"
+
+
+>>>>>>> origin/docker_test
 
 #ADD imhere.sql /tmp/imhere.sql
 

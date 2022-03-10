@@ -10,6 +10,7 @@
 
 ##################
 
+<<<<<<< HEAD
 FROM phpmyadmin:latest
 #FROM phpmyadmin:latest
 
@@ -20,3 +21,8 @@ RUN apt-get update && apt-get upgrade -y && apt-get dist-upgrade -y && apt-get i
 ENV MYSQL_ROOT_PASSWORD="rootpass"
 ENV PMA_HOST="db_c"
 ENV PMA_PASSWORD="rootpass"
+=======
+FROM phpmyadmin:fpm-alpine
+
+RUN apk add iputils
+>>>>>>> origin/docker_test

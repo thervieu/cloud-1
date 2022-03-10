@@ -1,0 +1,21 @@
+- name: Copy files
+  ansible.builtin.copy:
+    src: '{{role_path}}/../templates'
+    dest: nginx_files # directory automatically created
+
+- name: Build image
+  community.docker.docker_image:
+    name: nginx_img
+    state: present
+    build:
+      path: nginx_files
+
+- name: Run container
+  community.docker.docker_container:
+    name: nginx_container
+    image: nginx_img
+    state: present
+    networks:
+      name: "cloud-1_network"
+    restart_policy: on-failure
+    restart_retries: 3

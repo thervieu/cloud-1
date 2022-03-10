@@ -1,0 +1,7 @@
+host: local
+
+user: alba
+
+network_name: 'cloudatlas'
+
+mariadb_directory: /home/{{ user }}/mariadb_build

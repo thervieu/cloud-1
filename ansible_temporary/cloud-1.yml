@@ -14,6 +14,7 @@
   vars_files:
     - group_vars/all
   hosts: "{{host}}"
+  gather_facts: no
   remote_user: ubuntu
   become: yes
   become_method: sudo

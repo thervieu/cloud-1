@@ -1,33 +1,35 @@
-- name: Creates nginx directory
+- name: Create the directory
   file:
     path: "{{ nginx_path }}"
     state: directory
 
-- name: Copy Dockerfile
+- name: Copy the Dockerfile
   template:
     src: Dockerfile
-    dest: "{{ nginx_dir }}"/Dockerfile
+    dest: "{{ nginx_dir }}/Dockerfile"
 
-#- name: Copy .conf
-#  template:
-#    src: mariadb.conf
-#    dest: "{{ nginx_dir }}/mariadb.conf"
+- name: Copy the configuration file
+  template:
+    src: default.conf
+    dest: "{{ nginx_dir }}/default.conf"
 
-- name: build image
+- name: Build the image
   community.docker.docker_image:
-    name: mariadb_img
+    name: "{{ nginx_image }}"
     state: present
     source: build
     build:
-      path: mariadb_build
+      path: "{{ nginx_dir }}"
 
-- name: run container
+- name: Run the container
   community.docker.docker_container:
-    name: mariadb_container
-    image: mariadb_img
+    name: "{{ nginx_name }}"
+    image: "{{ nginx_image }}"
     state: started
-    restart: yes
-    restart_policy: always
+    #restart: yes
+    #restart_policy: always
     networks:
       - name: "{{network_name}}"
+    ports:
+      - "80:80"
     container_default_behavior: compatibility

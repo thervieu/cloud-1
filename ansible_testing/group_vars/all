@@ -11,19 +11,19 @@ user: alba
 network_name: cloudatlas
 #network_name: 'cloud-1_network'
 
-# Nginx
-
-nginx_dir: nginx_build
-nginx_path: /home/{{ user }}/{{nginx_dir}}
-nginx_image: nginx_img
-nginx_name: nginx_container
-
 # MariaDB
 
 db_dir: mariadb_build
 db_path: /home/{{ user }}/{{db_dir}}
 db_image: db_img
 db_name: mariadb_container
+
+# phpMyAdmin
+
+pma_dir: pma_build
+pma_path: /home/{{ user }}/{{pma_dir}}
+pma_image: pma_img
+pma_name: pma_container
 
 # Wordpress
 
@@ -32,9 +32,9 @@ wp_path: /home/{{ user }}/{{wp_dir}}
 wp_image: wp_img
 wp_name: wp_container
 
-# phpMyAdmin
+# Nginx
 
-pma_dir: pma_build
-pma_path: /home/{{ user }}/{{pma_dir}}
-pma_image: pma_img
-pma_name: pma_container
+nginx_dir: nginx_build
+nginx_path: /home/{{ user }}/{{nginx_dir}}
+nginx_image: nginx_img
+nginx_name: nginx_container

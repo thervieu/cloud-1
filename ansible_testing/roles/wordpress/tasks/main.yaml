@@ -1,19 +1,19 @@
-- name: Creates directory
+- name: Create the directory
   file:
     path: "{{ wp_path }}"
     state: directory
 
-- name: Copy Dockerfile
+- name: Copy the Dockerfile
   template:
     src: Dockerfile
     dest: "{{ wp_dir }}/Dockerfile"
 
-# - name: Copy .conf
-#   template:
-#     src: wordpress.conf
-#     dest: wordpress_build/wordpress.conf
+#- name: Copy the configuration file
+#  template:
+#    src: default.conf
+#    dest: wordpress_build/wordpress.conf
 
-- name: build image
+- name: Build the image
   community.docker.docker_image:
     name: "{{ wp_image }}"
     state: present
@@ -21,7 +21,8 @@
     build:
       path: "{{ wp_dir }}"
 
-- name: run container
+
+- name: Run the container
   community.docker.docker_container:
     name: "{{ wp_name }}"
     image: "{{ wp_image }}"
@@ -31,5 +32,5 @@
     networks:
       - name: "{{network_name}}"
     ports:
-      - "8081:80"
+      - "9000:80"
     container_default_behavior: compatibility

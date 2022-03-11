@@ -6,6 +6,8 @@
   hosts: "{{ host }}"
   become: yes
   become_method: sudo
+  tags:
+    - prerequisites
   roles:
     - install
 
@@ -16,6 +18,8 @@
   gather_facts: no
 #  become: yes
 #  become_method: sudo
+  tags:
+    - starting_docker
   roles:
     - docker_setup
 
@@ -26,6 +30,8 @@
   hosts: "{{host}}"
 #  become: yes
 #  become_method: sudo
+  tags:
+    - database
   roles:
     - mariadb
 
@@ -37,6 +43,8 @@
   hosts: "{{host}}"
 #  become: yes
 #  become_method: sudo
+  tags:
+    - pma
   roles:
     - phpmyadmin
 
@@ -48,5 +56,20 @@
   hosts: "{{host}}"
 #  become: yes
 #  become_method: sudo
+  tags:
+    - website
   roles:
     - wordpress
+
+
+- name: Deploy the Nginx container on the server
+  vars_files:
+     - group_vars/all
+  gather_facts: no
+  hosts: "{{host}}"
+#  become: yes
+#  become_method: sudo
+  tags:
+    - proxy
+  roles:
+    - nginx

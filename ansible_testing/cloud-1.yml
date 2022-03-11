@@ -51,3 +51,16 @@
   become_method: sudo
   roles:
     - phpmyadmin
+
+
+- name: Deploy the Wordpress container on the server
+  vars_files:
+    - group_vars/all_vps
+    # - group_vars/all_local
+  gather_facts: no
+  hosts: "{{host}}"
+#  remote_user: "{{ user }}"
+  become: yes
+  become_method: sudo
+  roles:
+    - wordpress

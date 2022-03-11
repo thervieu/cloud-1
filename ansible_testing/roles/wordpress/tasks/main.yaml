@@ -1,0 +1,33 @@
+- name: Creates wordpress_build directory
+  file:
+    path: "{{ wordpress_directory }}"
+    state: directory
+
+- name: Copy Dockerfile
+  template:
+    src: Dockerfile
+    dest: wordpress_build/Dockerfile
+
+# - name: Copy .conf
+#   template:
+#     src: wordpress.conf
+#     dest: wordpress_build/wordpress.conf
+
+- name: build image
+  community.docker.docker_image:
+    name: wordpress_img
+    state: present
+    source: build
+    build:
+      path: wordpress_build
+
+- name: run container
+  community.docker.docker_container:
+    name: wordpress_container
+    image: wordpress_img
+    state: started
+    networks:
+      - name: "{{network_name}}"
+    container_default_behavior: compatibility
+    restart_policy: "on-failure"
+    restart_retries: 3

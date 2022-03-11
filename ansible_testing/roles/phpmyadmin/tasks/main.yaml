@@ -7,7 +7,7 @@
   template:
     src: Dockerfile
     dest: "{{ pma_dir }}/Dockerfile"
-d
+
 # - name: Copy .conf
 #   template:
 #     src: pma.conf

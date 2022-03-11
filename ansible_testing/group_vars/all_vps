@@ -4,3 +4,4 @@ user: ubuntu
 network_name: 'cloud-1_network'
 
 mariadb_directory: /home/{{ user }}/mariadb_build
+pma_directory: /home/{{ user }}/pma_build

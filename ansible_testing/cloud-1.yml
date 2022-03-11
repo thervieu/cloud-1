@@ -11,6 +11,7 @@
   roles:
     - install
 
+
 - name: Create docker volume
   vars_files:
     - group_vars/all_vps
@@ -25,6 +26,7 @@
       community.docker.docker_volume:
         volume_name: db_volume
 
+
 - name: Deploy the MariaDB container on the server
   vars_files:
     - group_vars/all_vps
@@ -37,3 +39,15 @@
   roles:
     - mariadb
 
+
+- name: Deploy the phpMyAdmin container on the server
+  vars_files:
+    - group_vars/all_vps
+    # - group_vars/all_local
+  gather_facts: no
+  hosts: "{{host}}"
+#  remote_user: "{{ user }}"
+  become: yes
+  become_method: sudo
+  roles:
+    - phpmyadmin

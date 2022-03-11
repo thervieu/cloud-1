@@ -6,7 +6,3 @@ ENV MYSQL_DATABASE="wordpress_db"
 
 ENV MYSQL_USER="wordpress_user"
 ENV MYSQL_PASSWORD="wordpress_pass"
-
-EXPOSE 3306
-
-CMD ["mysqld"]

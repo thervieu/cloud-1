@@ -1,3 +1,8 @@
 FROM phpmyadmin:latest
 
 ENV PMA_ARBITRARY=1
+
+# ENV PMA_USER="root"
+# ENV PMA_PASSWORD="rootpass"
+ENV PMA_HOST=172.18.0.2
+ENV PMA_PORT=3306

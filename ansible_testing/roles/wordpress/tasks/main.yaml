@@ -23,7 +23,7 @@
 
 - name: run container
   community.docker.docker_container:
-    name: wp_container
+    name: "{{ wp_name }}"
     image: "{{ wp_image }}"
     state: started
     restart: yes

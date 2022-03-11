@@ -8,10 +8,10 @@
     src: Dockerfile
     dest: "{{ nginx_dir }}"/Dockerfile
 
-- name: Copy .conf
-  template:
-    src: mariadb.conf
-    dest: "{{ nginx_dir }}/mariadb.conf
+#- name: Copy .conf
+#  template:
+#    src: mariadb.conf
+#    dest: "{{ nginx_dir }}/mariadb.conf"
 
 - name: build image
   community.docker.docker_image:

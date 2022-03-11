@@ -23,7 +23,7 @@
 
 - name: Run container
   community.docker.docker_container:
-    name: mariadb_container
+    name: "{{ db_name }}"
     image: "{{ db_image }}"
     state: started
     restart: yes

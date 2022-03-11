@@ -23,7 +23,7 @@
 
 - name: Run container
   community.docker.docker_container:
-    name: pma_container
+    name: "{{ pma_name }}"
     image: "{{ pma_image }}"
     state: started
     restart: yes

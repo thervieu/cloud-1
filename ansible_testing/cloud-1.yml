@@ -16,7 +16,8 @@
   gather_facts: no
 #  become: yes
 #  become_method: sudo
-
+  roles:
+    - docker_setup
 
 - name: Deploy the MariaDB container on the server
   vars_files:

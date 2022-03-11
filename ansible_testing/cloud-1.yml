@@ -5,27 +5,38 @@
      - group_vars/all_local
   gather_facts: no
   hosts: "{{ host }}"
-#  remote_user: "{{ user }}"
   become: yes
   become_method: sudo
   roles:
     - install
 
 
-- name: Create docker volume
+- name: Create db volume
   vars_files:
     #- group_vars/all_vps
      - group_vars/all_local
   hosts: "{{ host }}"
   gather_facts: no
-#  remote_user: "{{ user }}"
   become: yes
   become_method: sudo
   tasks:
-    - name: Create and name the Docker Volume
+    - name: Create and name the db Volume
       community.docker.docker_volume:
         volume_name: db_volume
 
+
+- name: Create wordpress volume
+  vars_files:
+    #- group_vars/all_vps
+     - group_vars/all_local
+  hosts: "{{ host }}"
+  gather_facts: no
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: Create and name the wordpress Volume
+      community.docker.docker_volume:
+        volume_name: wp_volume
 
 - name: Deploy the MariaDB container on the server
   vars_files:
@@ -33,7 +44,6 @@
      - group_vars/all_local
   gather_facts: no
   hosts: "{{host}}"
-#  remote_user: "{{ user }}"
   become: yes
   become_method: sudo
   roles:
@@ -46,7 +56,6 @@
      - group_vars/all_local
   gather_facts: no
   hosts: "{{host}}"
-#  remote_user: "{{ user }}"
   become: yes
   become_method: sudo
   roles:
@@ -59,7 +68,6 @@
      - group_vars/all_local
   gather_facts: no
   hosts: "{{host}}"
-#  remote_user: "{{ user }}"
   become: yes
   become_method: sudo
   roles:

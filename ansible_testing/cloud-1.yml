@@ -1,8 +1,7 @@
 --- 
 - name: Installing the prerequisites on the server
   vars_files:
-    #- group_vars/all_vps
-     - group_vars/all_local
+     - group_vars/all
   gather_facts: no
   hosts: "{{ host }}"
   become: yes
@@ -10,23 +9,9 @@
   roles:
     - install
 
-
-- name: Create db volume
-  vars_files:
-    #- group_vars/all_vps
-     - group_vars/all_local
-  hosts: "{{ host }}"
-  gather_facts: no
-#  become: yes
-#  become_method: sudo
-  roles:
-    - docker_setup
-
-
 - name: Setup the Docker environment on the server
   vars_files:
-    #- group_vars/all_vps
-     - group_vars/all_local
+     - group_vars/all
   hosts: "{{ host }}"
   gather_facts: no
 #  become: yes
@@ -35,8 +20,7 @@
 
 - name: Deploy the MariaDB container on the server
   vars_files:
-    #- group_vars/all_vps
-     - group_vars/all_local
+     - group_vars/all
   gather_facts: no
   hosts: "{{host}}"
 #  become: yes
@@ -47,8 +31,7 @@
 
 - name: Deploy the phpMyAdmin container on the server
   vars_files:
-    #- group_vars/all_vps
-     - group_vars/all_local
+     - group_vars/all
   gather_facts: no
   hosts: "{{host}}"
 #  become: yes
@@ -59,8 +42,7 @@
 
 - name: Deploy the Wordpress container on the server
   vars_files:
-    #- group_vars/all_vps
-     - group_vars/all_local
+     - group_vars/all
   gather_facts: no
   hosts: "{{host}}"
 #  become: yes

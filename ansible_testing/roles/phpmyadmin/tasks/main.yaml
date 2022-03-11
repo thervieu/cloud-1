@@ -1,30 +1,30 @@
-- name: Creates pma_build directory
+- name: Creates directory
   file:
-    path: "{{ pma_directory }}"
+    path: "{{ pma_path }}"
     state: directory
 
 - name: Copy Dockerfile
   template:
     src: Dockerfile
-    dest: pma_build/Dockerfile
-
+    dest: "{{ pma_dir }}/Dockerfile"
+d
 # - name: Copy .conf
 #   template:
 #     src: pma.conf
-#     dest: pma_build/pma.conf
+#     dest: "{{ pma_dir }}/pma.conf"
 
-- name: build image
+- name: Build image
   community.docker.docker_image:
-    name: pma_img
+    name: "{{ pma_image }}"
     state: present
     source: build
     build:
-      path: pma_build
+      path: "{{ pma_dir }}"
 
-- name: run container
+- name: Run container
   community.docker.docker_container:
     name: pma_container
-    image: pma_img
+    image: "{{ pma_image }}"
     state: started
     restart: yes
     restart_policy: always

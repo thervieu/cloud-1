@@ -1,0 +1,40 @@
+# Global variables
+
+host: local
+user: alba
+
+#host: server
+#user: ubuntu
+
+# Docker network
+
+network_name: cloudatlas
+#network_name: 'cloud-1_network'
+
+# Nginx
+
+nginx_dir: nginx_build
+nginx_path: /home/{{ user }}/{{nginx_dir}}
+nginx_image: nginx_img
+#nginx_name:
+
+# MariaDB
+
+db_dir: mariadb_build
+db_path: /home/{{ user }}/{{mariadb_dir}}
+db_image: db_img
+#db_name:
+
+# Wordpress
+
+wp_dir: wordpress_build
+wp_path: /home/{{ user }}/{{wordpress_dir}}
+wp_image: db_img
+#wp_name:
+
+# phpMyAdmin
+
+pma_dir: pma_build
+pma_path: /home/{{ user }}/{{pma_dir}}
+pma_image: pma_img
+#pma_name:

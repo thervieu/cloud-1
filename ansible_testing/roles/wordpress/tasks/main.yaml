@@ -1,12 +1,12 @@
-- name: Creates wordpress_build directory
+- name: Creates directory
   file:
-    path: "{{ wordpress_directory }}"
+    path: "{{ wp_path }}"
     state: directory
 
 - name: Copy Dockerfile
   template:
     src: Dockerfile
-    dest: wordpress_build/Dockerfile
+    dest: "{{ wp_dir }}/Dockerfile"
 
 # - name: Copy .conf
 #   template:
@@ -15,16 +15,16 @@
 
 - name: build image
   community.docker.docker_image:
-    name: wordpress_img
+    name: "{{ wp_image }}"
     state: present
     source: build
     build:
-      path: wordpress_build
+      path: "{{ wp_dir }}"
 
 - name: run container
   community.docker.docker_container:
-    name: wordpress_container
-    image: wordpress_img
+    name: wp_container
+    image: "{{ wp_image }}"
     state: started
     restart: yes
     restart_policy: always

@@ -27,7 +27,3 @@
 - name: Install mysql-client to check db
   ansible.builtin.pip:
     name: docker
-
-- name: Create the Docker network
-  community.docker.docker_network:
-    name: "{{ network_name }}"

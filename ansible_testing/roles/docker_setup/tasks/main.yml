@@ -1,0 +1,12 @@
+---
+- name: Create the Docker network
+  community.docker.docker_network:
+    name: "{{ network_name }}"
+
+- name: Create the mariadb Volume
+  community.docker.docker_volume:
+    name: db_volume
+
+- name: Create the wordpress Volume
+  community.docker.docker_volume:
+    name: wp_volume

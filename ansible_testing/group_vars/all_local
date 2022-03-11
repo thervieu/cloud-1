@@ -1,5 +1,4 @@
 host: local
-
 user: alba
 
 network_name: 'cloudatlas'

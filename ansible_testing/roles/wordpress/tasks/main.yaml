@@ -26,6 +26,8 @@
     name: wordpress_container
     image: wordpress_img
     state: started
+    restart: yes
+    restart_policy: always
     networks:
       - name: "{{network_name}}"
     ports:

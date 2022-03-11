@@ -26,6 +26,8 @@
     name: mariadb_container
     image: mariadb_img
     state: started
+    restart: yes
+    restart_policy: always
     networks:
       - name: "{{network_name}}"
     container_default_behavior: compatibility

@@ -31,5 +31,3 @@
     networks:
       - name: "{{network_name}}"
     container_default_behavior: compatibility
-    restart_policy: "on-failure"
-    restart_retries: 3

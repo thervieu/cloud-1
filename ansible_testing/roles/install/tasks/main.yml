@@ -21,6 +21,10 @@
     state: latest
 
 - name: Install Docker Module for Python
+  ansible.builtin.apt:
+    name: mysql-client
+
+- name: Install mysql-client to check db
   ansible.builtin.pip:
     name: docker
 

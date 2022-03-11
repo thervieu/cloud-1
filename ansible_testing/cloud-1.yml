@@ -1,8 +1,8 @@
 --- 
 - name: Installing the prerequisites on the server
   vars_files:
-#    - group_vars/all_vps
-    - group_vars/all_local
+    - group_vars/all_vps
+    # - group_vars/all_local
   gather_facts: no
   hosts: "{{ host }}"
 #  remote_user: "{{ user }}"
@@ -13,8 +13,8 @@
 
 - name: Create docker volume
   vars_files:
-#    - group_vars/all_vps
-    - group_vars/all_local
+    - group_vars/all_vps
+    # - group_vars/all_local
   hosts: "{{ host }}"
   gather_facts: no
 #  remote_user: "{{ user }}"
@@ -27,8 +27,8 @@
 
 - name: Deploy the MariaDB container on the server
   vars_files:
-#    - group_vars/all_vps
-    - group_vars/all_local
+    - group_vars/all_vps
+    # - group_vars/all_local
   gather_facts: no
   hosts: "{{host}}"
 #  remote_user: "{{ user }}"

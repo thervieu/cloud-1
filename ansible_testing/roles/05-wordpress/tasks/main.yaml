@@ -5,8 +5,9 @@
 
 - name: Copy the Dockerfile
   template:
-    src: Dockerfile
+    src: Dockerfile.j2
     dest: "{{ wp_dir }}/Dockerfile"
+#    register: sync_dockerfile
 
 #- name: Copy the configuration file
 #  template:
@@ -20,7 +21,7 @@
     source: build
     build:
       path: "{{ wp_dir }}"
-
+#    when: sync_result.changed
 
 - name: Run the container
   community.docker.docker_container:
@@ -34,3 +35,5 @@
     ports:
       - "9000:80"
     container_default_behavior: compatibility
+    volumes:
+      - "{{ wp_vol }}:/var/www/html"

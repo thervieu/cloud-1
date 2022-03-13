@@ -5,13 +5,13 @@
 
 - name: Copy the Dockerfile
   template:
-    src: Dockerfile
+    src: Dockerfile.j2
     dest: "{{ nginx_dir }}/Dockerfile"
 
-- name: Copy the configuration file
-  template:
-    src: default.conf
-    dest: "{{ nginx_dir }}/default.conf"
+#- name: Copy the configuration file
+#  template:
+#    src: default.conf.j2
+#    dest: "{{ nginx_dir }}/default.conf"
 
 - name: Build the image
   community.docker.docker_image:

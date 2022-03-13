@@ -1,0 +1,35 @@
+- name: Create the directory
+  file:
+    path: "{{ httpd_path }}"
+    state: directory
+
+- name: Copy the Dockerfile
+  template:
+    src: Dockerfile.j2
+    dest: "{{ httpd_dir }}/Dockerfile"
+
+#- name: Copy the configuration file
+#  template:
+#    src: default.conf
+#    dest: "{{ httpd_dir }}/default.conf"
+
+- name: Build the image
+  community.docker.docker_image:
+    name: "{{ httpd_image }}"
+    state: present
+    source: build
+    build:
+      path: "{{ httpd_dir }}"
+
+- name: Run the container
+  community.docker.docker_container:
+    name: "{{ httpd_name }}"
+    image: "{{ httpd_image }}"
+    state: started
+    #restart: yes
+    #restart_policy: always
+    networks:
+      - name: "{{network_name}}"
+    ports:
+      - "80:80"
+    container_default_behavior: compatibility

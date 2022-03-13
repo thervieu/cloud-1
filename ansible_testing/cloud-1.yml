@@ -9,67 +9,64 @@
   tags:
     - prerequisites
   roles:
-    - install
+    - 01-install
 
 - name: Setup the Docker environment on the server
   vars_files:
      - group_vars/all
   hosts: "{{ host }}"
   gather_facts: no
-#  become: yes
-#  become_method: sudo
+  become: yes
+  become_method: sudo
   tags:
     - starting_docker
   roles:
-    - docker_setup
+    - 02-docker_setup
 
 - name: Deploy the MariaDB container on the server
   vars_files:
      - group_vars/all
   gather_facts: no
   hosts: "{{host}}"
-#  become: yes
-#  become_method: sudo
+  become: yes
+  become_method: sudo
   tags:
     - database
   roles:
-    - mariadb
-
+    - 03-mariadb
 
 - name: Deploy the phpMyAdmin container on the server
   vars_files:
      - group_vars/all
   gather_facts: no
   hosts: "{{host}}"
-#  become: yes
-#  become_method: sudo
+  become: yes
+  become_method: sudo
   tags:
     - pma
   roles:
-    - phpmyadmin
-
+    - 04-phpmyadmin
 
 - name: Deploy the Wordpress container on the server
   vars_files:
      - group_vars/all
   gather_facts: no
   hosts: "{{host}}"
-#  become: yes
-#  become_method: sudo
+  become: yes
+  become_method: sudo
   tags:
     - website
   roles:
-    - wordpress
+    - 05-wordpress
 
-
-- name: Deploy the Nginx container on the server
+- name: Deploy the Apache container on the server
   vars_files:
      - group_vars/all
   gather_facts: no
   hosts: "{{host}}"
-#  become: yes
-#  become_method: sudo
+  become: yes
+  become_method: sudo
   tags:
     - proxy
   roles:
-    - nginx
+    - 06-apache

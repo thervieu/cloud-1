@@ -5,12 +5,12 @@
 
 - name: Copy Dockerfile
   template:
-    src: Dockerfile
+    src: Dockerfile.j2
     dest: "{{ db_dir }}/Dockerfile"
 
 - name: Copy .conf
   template:
-    src: mariadb.conf
+    src: mariadb.conf.j2
     dest: "{{ db_dir }}/mariadb.conf"
 
 - name: Build image
@@ -31,3 +31,5 @@
     networks:
       - name: "{{network_name}}"
     container_default_behavior: compatibility
+    volumes:
+      - "{{ bdd_vol }}:/var/lib/mysql"

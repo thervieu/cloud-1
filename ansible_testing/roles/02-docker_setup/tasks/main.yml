@@ -3,10 +3,10 @@
   community.docker.docker_network:
     name: "{{ network_name }}"
 
-- name: Create the mariadb Volume
+- name: Create the MariaDB volume
   community.docker.docker_volume:
-    name: db_volume
+    name: "{{ bdd_vol }}"
 
-- name: Create the wordpress Volume
+- name: Create the Wordpress volume
   community.docker.docker_volume:
-    name: wp_volume
+    name: "{{ wp_vol }}"

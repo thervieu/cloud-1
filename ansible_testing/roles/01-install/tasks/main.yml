@@ -24,6 +24,8 @@
   ansible.builtin.apt:
     name: mysql-client
 
+####  "Install mysql client" mais pour l'instant on installe docker ? Tu pourras m'expliquer demain stp ?
+
 - name: Install mysql-client to check db
   ansible.builtin.pip:
     name: docker

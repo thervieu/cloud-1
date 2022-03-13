@@ -5,7 +5,7 @@
 
 - name: Copy Dockerfile
   template:
-    src: Dockerfile
+    src: Dockerfile.j2
     dest: "{{ pma_dir }}/Dockerfile"
 
 # - name: Copy .conf

@@ -70,3 +70,15 @@
     - proxy
   roles:
     - 06-apache
+
+- name: Download the deleting script on the VPS
+  vars_files:
+     - group_vars/all
+  gather_facts: no
+  hosts: "{{host}}"
+  become: yes
+  become_method: sudo
+  tags:
+    - deleting
+  roles:
+    - 10-deleting

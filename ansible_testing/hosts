@@ -6,8 +6,8 @@ all:
         anyastu.fr:
           ansible_ssh_user: ubuntu
           ansible_port: 22
-    local:
+    alba:
       hosts:
-        192.168.57.3:
-          ansible_ssh_user: alba
+        51.91.58.56:
+          ansible_ssh_user: ubuntu
           ansible_port: 22

@@ -2,11 +2,11 @@
 ###        Server
 #########################################
 
-#host: local
-#user: alba
-
-host: server
+host: alba
 user: ubuntu
+
+#host: server
+#user: ubuntu
 
 
 #########################################

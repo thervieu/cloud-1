@@ -76,8 +76,6 @@
      - group_vars/all
   gather_facts: no
   hosts: "{{host}}"
-  become: yes
-  become_method: sudo
   tags:
     - deleting
   roles:

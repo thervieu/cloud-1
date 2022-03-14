@@ -2,14 +2,14 @@
 ###        Server
 #########################################
 
-host: alba
-user: ubuntu
-IP: 51.91.58.56
+#host: alba
+#user: ubuntu
+#IP: 51.91.58.56
 
-# host: server
-# user: ubuntu
-# #IP: anyastu.fr
-# IP: 146.59.226.22
+host: server
+user: ubuntu
+domain_name: anyastu.fr
+IP: 146.59.226.22
 
 
 #########################################
@@ -20,7 +20,7 @@ network_name: cloud_1
 
 bdd_vol: db_volume
 wp_vol: wp_volume
-
+ssl_vol: ssl_volume
 
 #########################################
 ###        MariaDB
@@ -69,3 +69,9 @@ httpd_dir: httpd_build
 httpd_path: /home/{{ user }}/{{httpd_dir}}
 httpd_image: httpd_img
 httpd_name: httpd_container
+
+#########################################
+###        SSL
+#########################################
+
+ssl_cert_path: "/usr/local/apache2/conf/ssl/{{ domain_name }}"

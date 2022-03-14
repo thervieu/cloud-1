@@ -10,3 +10,7 @@
 - name: Create the Wordpress volume
   community.docker.docker_volume:
     name: "{{ wp_vol }}"
+
+- name: Create the Certbot volume
+  community.docker.docker_volume:
+    name: "{{ ssl_vol }}"

@@ -8,15 +8,11 @@
     src: Dockerfile.j2
     dest: "{{ httpd_dir }}/Dockerfile"
 
-- name: Copy the httpd configuration file to enable the reverse proxy
+- name: Copy the configuration files on the server
   copy:
-    src: httpd.conf
-    dest: "{{ httpd_dir }}/httpd.conf"
-
-- name: Copy the virtual host configuration file
-  copy:
-    src: anyastu.conf
-    dest: "{{ httpd_dir }}/anyastu.conf"
+    src: .
+    dest: "{{ httpd_dir }}"
+    directory_mode: yes
 
 - name: Build the image
   community.docker.docker_image:
@@ -37,4 +33,5 @@
       - name: "{{network_name}}"
     ports:
       - "80:80"
+      - "443:443"
     container_default_behavior: compatibility

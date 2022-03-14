@@ -8,11 +8,6 @@
     src: Dockerfile.j2
     dest: "{{ pma_dir }}/Dockerfile"
 
-# - name: Copy .conf
-#   template:
-#     src: pma.conf
-#     dest: "{{ pma_dir }}/pma.conf"
-
 - name: Build image
   community.docker.docker_image:
     name: "{{ pma_image }}"

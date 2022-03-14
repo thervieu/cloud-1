@@ -5,7 +5,7 @@
 #host: local
 #user: alba
 
-host: alba
+host: server
 user: ubuntu
 
 

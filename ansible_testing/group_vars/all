@@ -2,11 +2,14 @@
 ###        Server
 #########################################
 
-host: alba
-user: ubuntu
-
-#host: server
+#host: alba
 #user: ubuntu
+#IP: 51.91.58.56
+
+host: server
+user: ubuntu
+#IP: anyastu.fr
+IP: 146.59.226.22
 
 
 #########################################

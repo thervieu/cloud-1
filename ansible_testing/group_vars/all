@@ -2,14 +2,14 @@
 ###        Server
 #########################################
 
-#host: alba
-#user: ubuntu
-#IP: 51.91.58.56
-
-host: server
+host: alba
 user: ubuntu
-#IP: anyastu.fr
-IP: 146.59.226.22
+IP: 51.91.58.56
+
+# host: server
+# user: ubuntu
+# #IP: anyastu.fr
+# IP: 146.59.226.22
 
 
 #########################################
@@ -38,7 +38,6 @@ db_port: 3306
 db_wp_name: wordpress_db
 db_wp_user: wordpress_user
 
-db_root_passw: rootpass
 db_wp_passw: wordpress_pass
 
 

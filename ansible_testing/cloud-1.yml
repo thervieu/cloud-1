@@ -26,6 +26,7 @@
 - name: Deploy the MariaDB container on the server
   vars_files:
      - group_vars/all
+     - group_vars/vault
   gather_facts: no
   hosts: "{{host}}"
   become: yes
@@ -50,6 +51,7 @@
 - name: Deploy the Wordpress container on the server
   vars_files:
      - group_vars/all
+     - group_vars/vault
   gather_facts: no
   hosts: "{{host}}"
   become: yes

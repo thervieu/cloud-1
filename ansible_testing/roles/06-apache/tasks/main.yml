@@ -7,25 +7,23 @@
   template:
     src: httpd.conf.j2
     dest: "{{ httpd_dir }}/httpd.conf"
-    #directory_mode: yes
 
 - name: Copy the Dockerfile
   template:
     src: Dockerfile.j2
     dest: "{{ httpd_dir }}/Dockerfile"
 
-- name: Copy the certificates folder
+- name: Copy the certificates folder - With Domain name
+  when: domain == "yes"
   copy:
-    src: .
-    dest: "{{ httpd_dir }}"
-    directory_mode: yes
+    src: certs_domain/
+    dest: "{{ httpd_dir }}/certificates"
 
-#- name: Create the certificates folder
-#  file:
-#    path: "{{ httpd_path }}"
-#    state: directory
-
-#- name: 
+- name: Copy the certificates folder - Without Domain Name
+  when: domain == "no"
+  copy:
+    src: certs_no_domain/
+    dest: "{{ httpd_dir }}/certificates"
 
 - name: Copy the adapted Virtual Host configuration site on the server - With Domain name
   template:

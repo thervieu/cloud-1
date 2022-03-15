@@ -3,22 +3,10 @@
     path: "{{ pma_path }}"
     state: directory
 
-- name: Copy Dockerfile - With Domain name
-  when: domain == "yes"
-  vars:
-    - pma_protocol: "https"
+- name: Copy Dockerfile
   template:
     src: Dockerfile.j2
     dest: "{{ pma_dir }}/Dockerfile"
-
-- name: Copy Dockerfile - Without Domain name
-  when: domain == "no"
-  vars:
-    - pma_protocol: "http"
-  template:
-    src: Dockerfile.j2
-    dest: "{{ pma_dir }}/Dockerfile"
-
 
 - name: Build image
   community.docker.docker_image:

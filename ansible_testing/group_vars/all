@@ -2,19 +2,18 @@
 ###        Server
 #########################################
 
-#host: alba
-#user: ubuntu
-#IP: 51.91.58.56
-
-host: server
+host: alba
 user: ubuntu
-IP: 146.59.226.22
+IP: 51.91.58.56
+domain: "no"
+domain_name: domain
 
-#domain: "no"
-#domain_name: domain
 
-domain: "yes"
-domain_name: anyastu.fr
+# host: server
+# user: ubuntu
+# IP: 146.59.226.22
+# domain: "yes"
+# domain_name: anyastu.fr
 
 #########################################
 ###        Docker setup

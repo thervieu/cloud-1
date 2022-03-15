@@ -4,13 +4,7 @@
 
     ProxyPreserveHost On
 
-    ProxyPass /phpmyadmin/ "http://{{ pma_name }}/"
-    ProxyPassReverse /phpmyadmin/ "http://{{ pma_name }}/"
-
-    ProxyPass / "http://{{ wp_name }}/"
-    ProxyPassReverse / "http://{{ wp_name }}/"
-
-#    Redirect "/" "https://{{ IP }}/"
+    Redirect "/" "https://{{ IP }}/"
 
 </VirtualHost>
 
@@ -21,8 +15,8 @@ LoadModule ssl_module modules/mod_ssl.so
 
     ServerName localhost
 
-#    SSLEngine on
-#    SSLProxyEngine on
+    SSLEngine on
+    SSLProxyEngine on
 
     ProxyPreserveHost On
 
@@ -35,8 +29,7 @@ LoadModule ssl_module modules/mod_ssl.so
     ProxyPass / "http://{{ wp_name }}/"
     ProxyPassReverse / "http://{{ wp_name }}/"
 
-#	SSLCertificateFile "{{ ssl_cert_path }}/fullchain.pem"
-#	SSLCertificateKeyFile "{{ ssl_cert_path }}/privkey.pem"
+    SSLCertificateFile "{{ ssl_cert_path }}/apache.pem"
+    SSLCertificateKeyFile "{{ ssl_cert_path }}/apache.key"
 
 </VirtualHost>
-

@@ -38,8 +38,6 @@ db_port: 3306
 db_wp_name: wordpress_db
 db_wp_user: wordpress_user
 
-db_wp_passw: wordpress_pass
-
 
 #########################################
 ###        phpMyAdmin

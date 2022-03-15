@@ -5,9 +5,9 @@ FROM httpd:latest
 EXPOSE 80 443
 
 RUN mkdir -p /usr/local/apache2/conf/sites
-RUN mkdir -p "/usr/local/apache2/conf/ssl/certificates"
+RUN mkdir -p "{{ ssl_cert_path }}"
 
 COPY httpd.conf /usr/local/apache2/conf/httpd.conf
 COPY website.conf /usr/local/apache2/conf/sites/website.conf
 
-COPY "certificates" "/usr/local/apache2/conf/ssl/certificates"
+COPY "certificates" "{{ ssl_cert_path }}"

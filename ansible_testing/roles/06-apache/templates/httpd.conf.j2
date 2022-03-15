@@ -28,7 +28,7 @@
 # same ServerRoot for multiple httpd daemons, you will need to change at
 # least PidFile.
 #
-ServerRoot "/usr/local/apache2"
+ServerRoot "{{ httpd_root_path }}"
 
 #
 # Mutex: Allows you to set the mutex mechanism and mutex file directory
@@ -550,4 +550,4 @@ SSLRandomSeed connect builtin
 </IfModule>
 
 # To Load Customer VirtualHost Configuration files
-IncludeOptional conf/sites/*.conf
+IncludeOptional "{{ httpd_conf_path }}/*.conf"

@@ -10,7 +10,10 @@ host: server
 user: ubuntu
 IP: 146.59.226.22
 
-domain: "no"
+#domain: "no"
+#domain_name: domain
+
+domain: "yes"
 domain_name: anyastu.fr
 
 #########################################
@@ -68,9 +71,12 @@ httpd_path: /home/{{ user }}/{{httpd_dir}}
 httpd_image: httpd_img
 httpd_name: httpd_container
 
+httpd_root_path: /usr/local/apache2
+httpd_conf_path: "conf/sites"
+
 #########################################
 ###        SSL
 #########################################
 
 vps_ssl_path: "{{ httpd_path }}/certificates"
-ssl_cert_path: "/usr/local/apache2/conf/ssl/{{ domain_name }}"
+ssl_cert_path: "/usr/local/apache2/conf/ssl/certificates"

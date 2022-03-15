@@ -1,11 +1,11 @@
 - name: Create the main directory
   file:
-    path: "{{ ssl_cert_path }}"
+    path: "{{ vps_ssl_path }}"
     state: directory
 
 - name: Copy the basic configuration files on the server
-  copy:
-    src: httpd.conf
+  template:
+    src: httpd.conf.j2
     dest: "{{ httpd_dir }}/httpd.conf"
     #directory_mode: yes
 
@@ -14,10 +14,18 @@
     src: Dockerfile.j2
     dest: "{{ httpd_dir }}/Dockerfile"
 
+- name: Copy the certificates folder
+  copy:
+    src: .
+    dest: "{{ httpd_dir }}"
+    directory_mode: yes
+
 #- name: Create the certificates folder
 #  file:
 #    path: "{{ httpd_path }}"
 #    state: directory
+
+#- name: 
 
 - name: Copy the adapted Virtual Host configuration site on the server - With Domain name
   template:

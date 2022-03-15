@@ -15,17 +15,19 @@
     name: docker-ce
     state: latest
 
+- name: Install openssl
+  ansible.builtin.apt:
+    name: openssl
+
 - name: Install pip
   ansible.builtin.apt:
     name: pip
     state: latest
 
-- name: Install Docker Module for Python
+- name: Install mysql-client to check db 
   ansible.builtin.apt:
     name: mysql-client
 
-####  "Install mysql client" mais pour l'instant on installe docker ? Tu pourras m'expliquer demain stp ?
-
-- name: Install mysql-client to check db
+- name: Install Docker Module for Python
   ansible.builtin.pip:
     name: docker

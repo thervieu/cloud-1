@@ -5,18 +5,9 @@ FROM httpd:latest
 EXPOSE 80 443
 
 RUN mkdir -p /usr/local/apache2/conf/sites
-RUN mkdir -p "/usr/local/apache2/conf/ssl/{{ domain_name }}"
-
-#RUN mkdir -p /var/www/html
-
-#COPY index.html /var/www/html/index.html
+RUN mkdir -p "/usr/local/apache2/conf/ssl/certificates"
 
 COPY httpd.conf /usr/local/apache2/conf/httpd.conf
-COPY anyastu.conf /usr/local/apache2/conf/sites/anyastu.conf
+COPY website.conf /usr/local/apache2/conf/sites/website.conf
 
-#COPY options-ssl-apache.conf /usr/local/apache2/conf/options-ssl-apache.conf
-
-#COPY 000-anyastu.conf /usr/local/apache2/conf/sites/000-anyastu.conf
-#COPY 000-anyastu-ssl.conf /usr/local/apache2/conf/sites/000-anyastu-ssl.conf
-
-COPY "{{ domain_name }}/" "/usr/local/apache2/conf/ssl/{{ domain_name }}/"
+COPY "certificates" "/usr/local/apache2/conf/ssl/certificates"

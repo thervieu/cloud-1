@@ -1,18 +1,35 @@
-- name: Create the directory
+- name: Create the main directory
   file:
-    path: "{{ httpd_path }}"
+    path: "{{ ssl_cert_path }}"
     state: directory
+
+- name: Copy the basic configuration files on the server
+  copy:
+    src: httpd.conf
+    dest: "{{ httpd_dir }}/httpd.conf"
+    #directory_mode: yes
 
 - name: Copy the Dockerfile
   template:
     src: Dockerfile.j2
     dest: "{{ httpd_dir }}/Dockerfile"
 
-- name: Copy the configuration files on the server
-  copy:
-    src: .
-    dest: "{{ httpd_dir }}"
-    directory_mode: yes
+#- name: Create the certificates folder
+#  file:
+#    path: "{{ httpd_path }}"
+#    state: directory
+
+- name: Copy the adapted Virtual Host configuration site on the server - With Domain name
+  template:
+    src: domain_website.conf.j2
+    dest: "{{ httpd_dir }}/website.conf"
+  when: domain == "yes"
+
+- name: Copy the adapted Virtual Host configuration site on the server - Without Domain Name
+  template:
+    src: basic_website.conf.j2
+    dest: "{{ httpd_dir }}/website.conf"
+  when: domain == "no"
 
 - name: Build the image
   community.docker.docker_image:
@@ -27,8 +44,8 @@
     name: "{{ httpd_name }}"
     image: "{{ httpd_image }}"
     state: started
-    #restart: yes
-    #restart_policy: always
+    restart: yes
+    restart_policy: always
     networks:
       - name: "{{network_name}}"
     ports:

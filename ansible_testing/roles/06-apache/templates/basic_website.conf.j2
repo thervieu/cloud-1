@@ -1,0 +1,42 @@
+<VirtualHost *:80>
+
+    ServerName localhost
+
+    ProxyPreserveHost On
+
+    ProxyPass /phpmyadmin/ http://pma_container/
+    ProxyPassReverse /phpmyadmin/ http://pma_container/
+
+    ProxyPass / http://wp_container/
+    ProxyPassReverse / http://wp_container/
+
+#    Redirect "/" "https://{{ IP }}/"
+
+</VirtualHost>
+
+Listen 443
+LoadModule ssl_module modules/mod_ssl.so
+
+<VirtualHost *:443>
+
+    ServerName localhost
+
+#    SSLEngine on
+#    SSLProxyEngine on
+
+    ProxyPreserveHost On
+
+    RequestHeader set X-Forwarded-Port "443"
+    RequestHeader set X-Forwarded-Proto "https"
+
+    ProxyPass /phpmyadmin/ http://pma_container/
+    ProxyPassReverse /phpmyadmin/ http://pma_container/
+
+    ProxyPass / http://wp_container/
+    ProxyPassReverse / http://wp_container/
+
+#	SSLCertificateFile "/usr/local/apache2/conf/ssl/certificates/fullchain.pem"
+#	SSLCertificateKeyFile "/usr/local/apache2/conf/ssl/certificates/privkey.pem"
+
+</VirtualHost>
+

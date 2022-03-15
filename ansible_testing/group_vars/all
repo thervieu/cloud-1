@@ -8,9 +8,10 @@
 
 host: server
 user: ubuntu
-domain_name: anyastu.fr
 IP: 146.59.226.22
 
+domain: "no"
+domain_name: anyastu.fr
 
 #########################################
 ###        Docker setup
@@ -48,7 +49,6 @@ pma_path: /home/{{ user }}/{{pma_dir}}
 pma_image: pma_img
 pma_name: pma_container
 
-
 #########################################
 ###        Wordpress
 #########################################
@@ -72,4 +72,5 @@ httpd_name: httpd_container
 ###        SSL
 #########################################
 
+vps_ssl_path: "{{ httpd_path }}/certificates"
 ssl_cert_path: "/usr/local/apache2/conf/ssl/{{ domain_name }}"

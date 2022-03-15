@@ -1,7 +1,0 @@
-FROM phpmyadmin:latest
-
-ENV PMA_ARBITRARY=1
-
-ENV PMA_HOST="{{ db_name }}"
-ENV PMA_PORT="{{ db_port }}"
-ENV PMA_ABSOLUTE_URI="https://{{IP}}/phpmyadmin/"

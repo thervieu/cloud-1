@@ -1,7 +1,0 @@
-all:
-  children:
-    ungrouped:
-      hosts:
-        anyastu.fr:
-          ansible_ssh_user: ubuntu
-          ansible_port: 22

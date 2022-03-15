@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo -e "#### DESTROYING CONTAINERS, CUSTOM IMAGES AND NETWORK\n"
+
+sudo docker kill $(sudo docker ps -q)
+sudo docker rmi -f "{{ db_image }}" "{{ pma_image }}" "{{ wp_image }}" "{{ httpd_image }}"
+sudo docker network rm "{{network_name}}"

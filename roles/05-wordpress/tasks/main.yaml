@@ -1,0 +1,40 @@
+- name: Create the directory
+  file:
+    path: "{{ wp_path }}"
+    state: directory
+
+- name: Copy the Dockerfile
+  template:
+    src: Dockerfile.j2
+    dest: "{{ wp_dir }}/Dockerfile"
+#    register: sync_dockerfile
+
+#- name: Copy the configuration file
+#  template:
+#    src: default.conf
+#    dest: wordpress_build/wordpress.conf
+
+- name: Build the image
+  community.docker.docker_image:
+    name: "{{ wp_image }}"
+    state: present
+    source: build
+    build:
+      path: "{{ wp_dir }}"
+#    when: sync_result.changed
+
+- name: Run the container
+  community.docker.docker_container:
+    name: "{{ wp_name }}"
+    image: "{{ wp_image }}"
+    state: started
+    restart: yes
+    restart_policy: always
+    networks:
+      - name: "{{network_name}}"
+    ports:
+      - "9000:80"
+      - "9001:443"
+    container_default_behavior: compatibility
+    volumes:
+      - "{{ wp_vol }}:/var/www/html"

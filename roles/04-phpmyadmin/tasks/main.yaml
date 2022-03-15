@@ -1,0 +1,30 @@
+- name: Creates directory
+  file:
+    path: "{{ pma_path }}"
+    state: directory
+
+- name: Copy Dockerfile
+  template:
+    src: Dockerfile.j2
+    dest: "{{ pma_dir }}/Dockerfile"
+
+- name: Build image
+  community.docker.docker_image:
+    name: "{{ pma_image }}"
+    state: present
+    source: build
+    build:
+      path: "{{ pma_dir }}"
+
+- name: Run container
+  community.docker.docker_container:
+    name: "{{ pma_name }}"
+    image: "{{ pma_image }}"
+    state: started
+    restart: yes
+    restart_policy: always
+    networks:
+      - name: "{{network_name}}"
+    ports:
+      - "8080:80"
+    container_default_behavior: compatibility

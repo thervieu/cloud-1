@@ -34,7 +34,7 @@ db_path: /home/{{ user }}/{{db_dir}}
 db_image: db_img
 db_name: mariadb_container
 
-db_port: 4520
+db_port: 3306
 
 # Ne pas modifier ces variables
 

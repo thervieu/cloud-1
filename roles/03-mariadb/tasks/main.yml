@@ -8,11 +8,6 @@
     src: Dockerfile.j2
     dest: "{{ db_dir }}/Dockerfile"
 
-- name: Copy .conf
-  template:
-    src: mariadb.conf.j2
-    dest: "{{ db_dir }}/mariadb.conf"
-
 - name: Build image
   community.docker.docker_image:
     name: "{{ db_image }}"

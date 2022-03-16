@@ -3,6 +3,9 @@
     path: "{{ vps_ssl_path }}"
     state: directory
 
+
+# copy files
+
 - name: Copy the basic configuration files on the server
   template:
     src: httpd.conf.j2
@@ -36,6 +39,9 @@
     src: basic_website.conf.j2
     dest: "{{ httpd_dir }}/website.conf"
   when: domain == "no"
+
+
+# docker build and run
 
 - name: Build the image
   community.docker.docker_image:

@@ -1,13 +1,8 @@
 ---
 all:
   children:
-    server:
+    server-domain:
       hosts:
         anyastu.fr:
-          ansible_ssh_user: ubuntu
-          ansible_port: 22
-    alba:
-      hosts:
-        51.91.58.56:
           ansible_ssh_user: ubuntu
           ansible_port: 22

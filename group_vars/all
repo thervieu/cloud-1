@@ -2,13 +2,6 @@
 ###        Server
 #########################################
 
-# host: alba
-# user: ubuntu
-# IP: 51.91.58.56
-# domain: "no"
-# domain_name: domain
-
-
 host: server
 user: ubuntu
 IP: 146.59.226.22
@@ -36,11 +29,8 @@ db_name: mariadb_container
 
 db_port: 3306
 
-# Ne pas modifier ces variables
-
 db_wp_name: wordpress_db
 db_wp_user: wordpress_user
-
 
 #########################################
 ###        phpMyAdmin
@@ -59,7 +49,6 @@ wp_dir: wordpress_build
 wp_path: /home/{{ user }}/{{wp_dir}}
 wp_image: wp_img
 wp_name: wp_container
-
 
 #########################################
 ###        Apache

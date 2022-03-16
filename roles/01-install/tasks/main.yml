@@ -24,7 +24,7 @@
     name: pip
     state: latest
 
-- name: Install mysql-client to check db 
+- name: Install mysql-client to check the db 
   ansible.builtin.apt:
     name: mysql-client
 

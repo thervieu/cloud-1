@@ -1,5 +1,0 @@
-- name: Create the deleting script for the containers and the custom images
-  template:
-    src: doom.sh.j2
-    dest: doom.sh
-    mode: 0777

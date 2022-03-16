@@ -1,10 +1,9 @@
+# Configuration on the server
+
 - name: Create the main directory
   file:
     path: "{{ vps_ssl_path }}"
     state: directory
-
-
-# copy files
 
 - name: Copy the basic configuration files on the server
   template:
@@ -41,7 +40,7 @@
   when: domain == "no"
 
 
-# docker build and run
+# Docker build and run
 
 - name: Build the image
   community.docker.docker_image:

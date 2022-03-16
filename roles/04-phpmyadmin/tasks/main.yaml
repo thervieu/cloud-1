@@ -25,6 +25,4 @@
     restart_policy: always
     networks:
       - name: "{{network_name}}"
-    ports:
-      - "8080:80"
     container_default_behavior: compatibility

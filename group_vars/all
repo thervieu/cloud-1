@@ -2,18 +2,18 @@
 ###        Server
 #########################################
 
-host: alba
-user: ubuntu
-IP: 51.91.58.56
-domain: "no"
-domain_name: domain
-
-
-# host: server
+# host: alba
 # user: ubuntu
-# IP: 146.59.226.22
-# domain: "yes"
-# domain_name: anyastu.fr
+# IP: 51.91.58.56
+# domain: "no"
+# domain_name: domain
+
+
+host: server
+user: ubuntu
+IP: 146.59.226.22
+domain: "yes"
+domain_name: anyastu.fr
 
 #########################################
 ###        Docker setup
@@ -34,7 +34,7 @@ db_path: /home/{{ user }}/{{db_dir}}
 db_image: db_img
 db_name: mariadb_container
 
-db_port: 3306
+db_port: 4520
 
 # Ne pas modifier ces variables
 

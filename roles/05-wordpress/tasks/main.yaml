@@ -32,9 +32,6 @@
     restart_policy: always
     networks:
       - name: "{{network_name}}"
-    ports:
-      - "9000:80"
-      - "9001:443"
     container_default_behavior: compatibility
     volumes:
       - "{{ wp_vol }}:/var/www/html"

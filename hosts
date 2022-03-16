@@ -1,7 +1,7 @@
 ---
 all:
   children:
-    server-domain:
+    server:
       hosts:
         anyastu.fr:
           ansible_ssh_user: ubuntu
